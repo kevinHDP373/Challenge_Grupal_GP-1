@@ -1,0 +1,22 @@
+id,nombres,apellidos,dui,pin_hash,rol
+AA_0001,Admin,Principal,4206096-7,1234,ADMIN
+C_0001,Maria,Perez Garcia,9232093-8,2294,CLIENTE
+C_0002,Pedro,Torres Rodriguez,5852772-6,9486,CLIENTE
+C_0003,Isabel,Hernandez Gonzalez,6533309-8,3162,CLIENTE
+C_0004,Francisco,Rodriguez Lopez,8370122-7,3280,CLIENTE
+C_0005,Elena,Gonzalez Torres,2174327-8,2191,CLIENTE
+C_0006,Pedro,Torres Perez,6069209-2,3333,CLIENTE
+C_0007,Elena,Torres Torres,7833242-4,2729,CLIENTE
+C_0008,Manuel,Torres Martinez,4462390-8,8164,CLIENTE
+C_0009,Elena,Garcia Gonzalez,2043985-2,5693,CLIENTE
+C_0010,Jose,Gonzalez Torres,6099271-8,2093,CLIENTE
+C_0011,Ana,Torres Torres,2005473-4,3871,CLIENTE
+C_0012,Luis,Rodriguez Lopez,6914120-1,8256,CLIENTE
+C_0013,Laura,Garcia Torres,7787635-9,5137,CLIENTE
+C_0014,Francisco,Torres Torres,1042971-1,3789,CLIENTE
+C_0015,Laura,Lopez Perez,8788843-9,4906,CLIENTE
+C_0016,Miguel,Lopez Hernandez,3050107-9,8817,CLIENTE
+C_0017,Maria,Martinez Perez,3304727-9,7303,CLIENTE
+C_0018,Pedro,Lopez Torres,2389920-6,4544,CLIENTE
+C_0019,Elena,Torres Torres,2346320-8,6955,CLIENTE
+C_0020,Luis,Lopez Perez,5505062-3,6506,CLIENTE
