@@ -11,6 +11,10 @@ from views.analisis import cargar_datos
 from views.analisis import estadisticas_por_cuenta
 from utils.limpiar_pantalla import limpiar_pantalla
 import uuid
+from views.visualizaciones import serie_temporal_total
+from views.visualizaciones import heatmap_actividad
+from views.visualizaciones import boxplot_depositos_por_tipo
+from views.visualizaciones import scatter_depositos_vs_gastos
 
 class MenuAdmin:
     def __init__(self, admin, banco_service, auth_service):
@@ -330,6 +334,7 @@ class MenuAdmin:
         print("2. Detectar anomalías por monto (Z-score)")
         print("3. Detectar Structuring")
         print("4. Detectar Actividad Nocturna")
+        print("5. Generar todas las visualizaciones")
         print("0. Volver")
 
         opcion = input("\nSeleccione una opción: ").strip()
@@ -371,6 +376,12 @@ class MenuAdmin:
                 print("\nCasos detectados:")
                 for r in resultados:
                     print(f"Cuenta: {r['id_cuenta']} | Fecha: {r['fecha']}")
+        elif opcion == "5":
+            serie_temporal_total()
+            heatmap_actividad()
+            boxplot_depositos_por_tipo()
+            scatter_depositos_vs_gastos()
+            print("\nGráficas generadas en outputs/plots/")
         elif opcion == "0":
             return self.mostrar()
         else:
