@@ -49,18 +49,18 @@ def estadisticas_por_cuenta(cuentas, montos, tipos):
         print("Percentiles:", p50, p90, p99)
         print("Ratio dep/gastos:", ratio)
 
+        detectar_anomalias(montos_cuenta)
 
-        def detectar_anomalias(montos):
+
+def detectar_anomalias(montos):
     media = np.mean(montos)
     desviacion = np.std(montos)
 
-    z = (montos - media) / desviacion
+    if desviacion == 0:
+        return
 
+    z = (montos - media) / desviacion
     anomalos = np.where(np.abs(z) > 3)
 
-    print("\nTransacciones anómalas:")
-    print(montos[anomalos])
-
-
-    
-
+    if len(anomalos[0]) > 0:
+        print("Transacciones anómalas:", montos[anomalos])
