@@ -6,6 +6,9 @@ from analisis.visualizaciones import Visualizador
 from grafos.red_transferencias import RedTransferencias """
 from models.cuenta import TipoCuenta
 from models.usuario import Cliente
+from views.analisis import DetectorAnomalias
+from views.analisis import cargar_datos
+from views.analisis import estadisticas_por_cuenta
 from utils.limpiar_pantalla import limpiar_pantalla
 import uuid
 
@@ -317,6 +320,64 @@ class MenuAdmin:
             print()
         
         input("\nPresione Enter para continuar...")
+
+    def modulo_analitica(self):
+        limpiar_pantalla()
+        print("\n--- MÓDULO DE ANALÍTICA ---")
+        print("-" * 40)
+
+        print("1. Estadísticas por cuenta")
+        print("2. Detectar anomalías por monto (Z-score)")
+        print("3. Detectar Structuring")
+        print("4. Detectar Actividad Nocturna")
+        print("0. Volver")
+
+        opcion = input("\nSeleccione una opción: ").strip()
+        #ESTADÍSTICAS
+        if opcion == "1":
+            try:
+                cuentas, montos, fechas, tipos = cargar_datos()
+                estadisticas_por_cuenta(cuentas, montos, tipos)
+            except Exception as e:
+                print("Error al cargar datos:", e)
+                self.modulo_analitica()
+        #Z-SCORE ANOMALÍAS
+        elif opcion == "2":
+            try:
+                _, montos, _, _ = cargar_datos()
+                DetectorAnomalias.detectar_anomalias(montos)
+            except Exception as e:
+                print("Error al analizar anomalías:", e)
+                self.modulo_analitica()
+        #STRUCTURING
+        elif opcion == "3":
+            resultados = DetectorAnomalias.detectar_structuring()
+
+            if not resultados:
+                print("\nNo se detectaron casos de structuring.")
+                self.modulo_analitica()
+            else:
+                print("\nCasos detectados:")
+                for r in resultados:
+                    print(f"Cuenta: {r['id_cuenta']} | Fecha: {r['fecha']}")
+        #ACTIVIDAD NOCTURNA
+        elif opcion == "4":
+            resultados = DetectorAnomalias.detectar_actividad_nocturna()
+
+            if not resultados:
+                print("\nNo se detectó actividad nocturna inusual.")
+                self.modulo_analitica()
+            else:
+                print("\nCasos detectados:")
+                for r in resultados:
+                    print(f"Cuenta: {r['id_cuenta']} | Fecha: {r['fecha']}")
+        elif opcion == "0":
+            return self.mostrar()
+        else:
+            print("Opción inválida.")
+
+        input("\nPresione Enter para continuar...")
+    
     
 """     def modulo_analitica(self):
         while True:
